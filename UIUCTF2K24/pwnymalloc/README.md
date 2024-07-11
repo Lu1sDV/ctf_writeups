@@ -44,7 +44,7 @@ When executing our binary we can:
 
 Analyzing `malloc.c` I find that when allocating a chunk we can overwrite what the *prev_size* bytes will be. *prev_size* bytes are the bytes used by a freed chunk to understand if they must coalesce with the previous chunk once freed, and by what extent. The obtained freed chunk will be inserted in our free chunk list, which will be popped in the next *malloc* call.
 
-Thus, I forge that bytes in a manner that I can obtain arbitrary write in a chunk. 
+Thus, I forge that bytes in a manner that I can obtain arbitrary write in a chunk by overlapping them.
 
 Once accomplished that, I can reach the purpose of the challenge: overwriting a flag in a malloc chunk that will permit us to have our flag printed, nothing too esoteric.
 
